@@ -4,9 +4,15 @@ dotnet: 6.0
 solution: src/Juka.sln
 
 before_install:
-- export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
 - sudo apt-get update
 - sudo apt-get install python3
+- sudo git clone https://github.com/emscripten-core/emsdk.git
+- sudo cd emsdk
+- sudo ./emsdk install latest
+- sudo ./emsdk activate latest
+- sudo source ./emsdk_env.sh
+- sudo cd ..
+- sudo export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
 
 script:
   - sudo dotnet workload install wasm-tools
@@ -15,9 +21,9 @@ script:
   - sudo dotnet publish -c Release
 
 before_deploy:
-  - export TRAVIS_TAG=${JUKTEMP}
-  - tar -zcf Juka_WebAssembly_${TRAVIS_TAG}.tar.gz -C bin/Release/net6.0/publish/ wwwroot
-  - git tag $TRAVIS_TAG
+  - sudo export TRAVIS_TAG=${JUKTEMP}
+  - sudo tar -zcf Juka_WebAssembly_${TRAVIS_TAG}.tar.gz -C bin/Release/net6.0/publish/ wwwroot
+  - sudo git tag $TRAVIS_TAG
 
 
 deploy:
