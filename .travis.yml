@@ -1,3 +1,4 @@
+dist: focal
 language: csharp
 dotnet: 6.0
 mono: none
@@ -6,17 +7,6 @@ before_install:
 - export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
 
 script:
-  - sudo apt-get update
-  - sudo apt-get install python3
-  - sudo apt-get install cmake
-  - git clone https://github.com/emscripten-core/emsdk.git
-  - cd emsdk
-  - ./emsdk install latest
-  - ./emsdk activate latest
-  - source ./emsdk_env.sh
-  - cd ..
-  - emcc --version
-  - export EMSDK_PYTHON=/usr/bin/python3 
   - sudo dotnet workload install wasm-tools
   - sudo dotnet add package JukaCompiler
   - sudo dotnet publish -c Release
