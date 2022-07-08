@@ -15,6 +15,7 @@ script:
   - ./emsdk activate latest
   - source ./emsdk_env.sh
   - cd ..
+  - emcc --version
   - export EMSDK_PYTHON=/usr/bin/python3 
   - sudo dotnet workload install wasm-tools
   - sudo dotnet add package JukaCompiler
