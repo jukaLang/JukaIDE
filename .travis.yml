@@ -10,7 +10,7 @@ before_install:
 - cd emsdk
 - sudo ./emsdk install latest
 - sudo ./emsdk activate latest
-- sudo source ./emsdk_env.sh
+- source ./emsdk_env.sh
 - cd ..
 - export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
 
