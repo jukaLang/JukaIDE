@@ -1,18 +1,11 @@
 os: windows
 language: csharp
 mono: none
-dotnet: 6.0
-solution: src/Juka.sln
 
 before_install:
+- choco install dotnetcore-sdk
 - sudo apt-get update
 - sudo apt-get install python3
-- sudo git clone https://github.com/emscripten-core/emsdk.git
-- cd emsdk
-- sudo ./emsdk install latest
-- sudo ./emsdk activate latest
-- source ./emsdk_env.sh
-- cd ..
 - export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
 
 script:
