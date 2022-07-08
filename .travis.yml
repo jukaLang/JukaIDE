@@ -1,3 +1,4 @@
+os: windows
 language: csharp
 mono: none
 dotnet: 6.0
@@ -16,7 +17,6 @@ before_install:
 
 script:
   - sudo dotnet workload install wasm-tools
-  - sudo dotnet add package Microsoft.NET.Runtime.Emscripten.2.0.23.Sdk.win-x64 --version 6.0.4
   - sudo dotnet add package JukaCompiler
   - sudo dotnet publish -c Release
 
