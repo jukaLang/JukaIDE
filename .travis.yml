@@ -7,6 +7,7 @@ before_install:
  - export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
 
 script:
+  - dotnet workload install wasm-tools
   - dotnet add package JukaCompiler
   - dotnet publish -c Release
 
