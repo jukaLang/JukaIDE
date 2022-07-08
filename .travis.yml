@@ -4,10 +4,13 @@ dotnet: 6.0
 solution: src/Juka.sln
 
 before_install:
- - export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
+- export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
+- sudo apt-get update
+- sudo apt-get install python3
 
 script:
   - sudo dotnet workload install wasm-tools
+  - sudo dotnet add package Microsoft.NET.Runtime.Emscripten.2.0.23.Sdk.win-x64 --version 6.0.4
   - sudo dotnet add package JukaCompiler
   - sudo dotnet publish -c Release
 
