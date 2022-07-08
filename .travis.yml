@@ -1,5 +1,4 @@
 language: csharp
-dotnet: 6.0
 mono: none
 
 before_install:
@@ -8,6 +7,13 @@ before_install:
 script:
   - sudo apt-get update
   - sudo apt-get install python3
+  - sudo apt-get install cmake
+  - git clone https://github.com/emscripten-core/emsdk.git
+  - cd emsdk
+  - ./emsdk install latest
+  - ./emsdk activate latest
+  - source ./emsdk_env.sh
+  - cd ..
   - export EMSDK_PYTHON=/usr/bin/python3 
   - sudo dotnet workload install wasm-tools
   - sudo dotnet add package JukaCompiler
