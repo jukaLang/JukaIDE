@@ -7,9 +7,9 @@ before_install:
  - export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
 
 script:
-  - dotnet workload install wasm-tools
-  - dotnet add package JukaCompiler
-  - dotnet publish -c Release
+  - sudo dotnet workload install wasm-tools
+  - sudo dotnet add package JukaCompiler
+  - sudo dotnet publish -c Release
 
 before_deploy:
   - export TRAVIS_TAG=${JUKTEMP}
