@@ -3,7 +3,7 @@ language: csharp
 mono: none
 
 before_install:
-- choco install dotnetcore-sdk
+- choco install dotnet-6.0-sdk
 - export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
 
 script:
