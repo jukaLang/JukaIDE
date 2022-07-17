@@ -23,7 +23,7 @@ dotnet_csproj:
 
 
 build_script:
-  - dotnet workload install wasm-tools JukaWebAssembly.sln
+  - dotnet workload install wasm-tools
   - dotnet add package JukaCompiler JukaWebAssembly.sln
   - dotnet publish -c Release JukaWebAssembly.sln
   - git tag $env:package_version
