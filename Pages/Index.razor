@@ -15,8 +15,8 @@ Enter Code Here: <br/>
 
 <br/><br/>
 <button @onclick="RunCode">Run Code</button>
-<br/>
-Output:<br/>
+<br/><br/>
+<span class="output">Output:</span>
 <pre>@OutputValue</pre>
 
 @code {
@@ -26,6 +26,6 @@ Output:<br/>
 
     public void RunCode()
     {
-        OutputValue = new JukaCompiler.Compiler().Go(InputValue, false);
+        OutputValue = new Compiler().Go(InputValue, false);
     }
 }

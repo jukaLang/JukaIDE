@@ -5,7 +5,7 @@ branches:
   only:
     - main
 
-skip_tags: false
+skip_tags: true
 skip_non_tags: false
 
 install:

@@ -4,19 +4,18 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
-    <RunAOTCompilation>false</RunAOTCompilation>
+	  <RunAOTCompilation>false</RunAOTCompilation>
     <PackageVersion>$(PackageVersion)</PackageVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appveyor.yml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="JukaCompiler" Version="0.0.86" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.6" PrivateAssets="all" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-  </ItemGroup>
-
+    
 </Project>
