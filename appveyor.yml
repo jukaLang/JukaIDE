@@ -22,7 +22,7 @@ dotnet_csproj:
   informational_version: '$env:package_version'
 
 
-after_build:
+build_script:
   - sudo dotnet workload install wasm-tools JukaWebAssembly.sln
   - sudo dotnet add package JukaCompiler JukaWebAssembly.sln
   - sudo dotnet publish -c Release JukaWebAssembly.sln
