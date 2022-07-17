@@ -26,7 +26,7 @@ build_script:
   - dotnet workload install wasm-tools
   - dotnet add package JukaCompiler
   - dotnet publish -c Release JukaWebAssembly.sln
-  - git tag $env:package_version
+
 
 
 configuration: Release
