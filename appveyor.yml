@@ -32,7 +32,7 @@ build_script:
 configuration: Release
 
 artifacts:
-- path: 'src\Juka\bin\Release\net6.0\publish\wwwroot'
+- path: 'bin\Release\net6.0\publish\wwwroot'
   name: Juka_WebAssembly_$env:package_version
   type: zip
 
@@ -47,5 +47,5 @@ deploy:
     draft: false
     prerelease: false
     on:
-      branch: master                # release from master branch only
+      branch: main                # release from master branch only
       APPVEYOR_REPO_TAG: false       # deploy on tag push only
