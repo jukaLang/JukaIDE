@@ -14,7 +14,7 @@ install:
 
 dotnet_csproj:
   patch: true
-  file: '\*.csproj; \*.csproj'
+  file: 'JukaWebAssembly.csproj'
   version: '{$env:package_version}'
   package_version: $(APPVEYOR_BUILD_VERSION)
   assembly_version: '$env:package_version'
