@@ -23,9 +23,9 @@ dotnet_csproj:
 
 
 build_script:
-  - sudo dotnet workload install wasm-tools JukaWebAssembly.sln
-  - sudo dotnet add package JukaCompiler JukaWebAssembly.sln
-  - sudo dotnet publish -c Release JukaWebAssembly.sln
+  - dotnet workload install wasm-tools JukaWebAssembly.sln
+  - dotnet add package JukaCompiler JukaWebAssembly.sln
+  - dotnet publish -c Release JukaWebAssembly.sln
   - git tag $env:package_version
 
 
