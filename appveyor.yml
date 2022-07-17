@@ -3,44 +3,37 @@ image: Visual Studio 2022
 branches:
   # whitelist
   only:
-    - master
+    - main
 
 skip_tags: false
 skip_non_tags: false
 
 install:
   - ps: $env:package_version = (Invoke-WebRequest -URI "https://api.github.com/repos/JukaLang/juka/releases/latest" | ConvertFrom-Json).tag_name
-  - ps: Update-AppveyorBuild -Version "$(package_version)"
-
-assembly_info:
-  patch: true
-  file: 'src\**\AssemblyInfo.*' 
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}-rc1'
+  - ps: Update-AppveyorBuild -Version "$env:package_version"
 
 dotnet_csproj:
   patch: true
-  file: 'src\**\*.csproj; **\*.csproj'
-  version: '{version}'
+  file: '\*.csproj; \*.csproj'
+  version: '{$env:package_version}'
   package_version: $(APPVEYOR_BUILD_VERSION)
-  assembly_version: '{version}'
-  file_version: '{version}'
-  informational_version: '{version}'
+  assembly_version: '$env:package_version'
+  file_version: '$env:package_version'
+  informational_version: '$env:package_version'
 
 
 after_build:
   - sudo dotnet workload install wasm-tools
   - sudo dotnet add package JukaCompiler
   - sudo dotnet publish -c Release 
-  - git tag $(package_version)
+  - git tag $env:package_version
 
 
 configuration: Release
 
 artifacts:
 - path: 'src\Juka\bin\Release\net6.0\publish\wwwroot'
-  name: Juka_WebAssembly_$(package_version)
+  name: Juka_WebAssembly_$env:package_version
   type: zip
 
 
