@@ -2,7 +2,7 @@
 
 Official Website: https://jukalang.com
 
-Travis (WebAssembly): [![Build Status](https://app.travis-ci.com/jukaLang/juka-webassembly.svg?branch=main)](https://app.travis-ci.com/jukaLang/juka-webassembly)
+AppVeyor (Web Assembly): [![Build status](https://ci.appveyor.com/api/projects/status/he4h1mtnoeakl7t0?svg=true)](https://ci.appveyor.com/project/TheAndreiM/juka-webassembly)
 
 ## Introduction
 

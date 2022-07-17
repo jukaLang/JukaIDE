@@ -8,22 +8,39 @@ branches:
 skip_tags: false
 skip_non_tags: false
 
-before_build: 
-  - export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
+install:
+  - ps: $env:package_version = (Invoke-WebRequest -URI "https://api.github.com/repos/JukaLang/juka/releases/latest" | ConvertFrom-Json).tag_name
+  - ps: Update-AppveyorBuild -Version "$(package_version)"
+
+assembly_info:
+  patch: true
+  file: 'src\**\AssemblyInfo.*' 
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}-rc1'
+
+dotnet_csproj:
+  patch: true
+  file: 'src\**\*.csproj; **\*.csproj'
+  version: '{version}'
+  package_version: $(APPVEYOR_BUILD_VERSION)
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
 
 
 after_build:
   - sudo dotnet workload install wasm-tools
   - sudo dotnet add package JukaCompiler
   - sudo dotnet publish -c Release 
-  - git tag $(JUKTEMP)
+  - git tag $(package_version)
 
 
 configuration: Release
 
 artifacts:
 - path: 'src\Juka\bin\Release\net6.0\publish\wwwroot'
-  name: Juka_WebAssembly_$(JUKTEMP)
+  name: Juka_WebAssembly_$(package_version)
   type: zip
 
 
