@@ -1,0 +1,41 @@
+image: Visual Studio 2022
+
+branches:
+  # whitelist
+  only:
+    - master
+
+skip_tags: false
+skip_non_tags: false
+
+before_build: 
+  - export JUKTEMP=$(curl "https://api.github.com/repos/JukaLang/juka/releases/latest" | jq -r ".tag_name")
+
+
+after_build:
+  - sudo dotnet workload install wasm-tools
+  - sudo dotnet add package JukaCompiler
+  - sudo dotnet publish -c Release 
+  - git tag $(JUKTEMP)
+
+
+configuration: Release
+
+artifacts:
+- path: 'src\Juka\bin\Release\net6.0\publish\wwwroot'
+  name: Juka_WebAssembly_$(JUKTEMP)
+  type: zip
+
+
+
+deploy:
+    # Deploy to GitHub Releases
+  - provider: GitHub
+    artifact: /.*\.zip/
+    auth_token:
+      secure: XCqLJKrsMnRCCEEcsPL53Emba/2GrP172INtXx86eu5XBbed614ug/2dcx8MZwmr
+    draft: false
+    prerelease: false
+    on:
+      branch: master                # release from master branch only
+      APPVEYOR_REPO_TAG: false       # deploy on tag push only
