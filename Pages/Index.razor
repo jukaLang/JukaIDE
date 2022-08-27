@@ -10,10 +10,7 @@
 <br/>
 
 Enter Code Here: <br/>
-<textarea rows="10" cols="80" @bind="InputValue">func main() = { 
-    var x = "Hello World";
-    printLine(x); 
-}</textarea>
+<textarea rows="10" cols="80" @bind="InputValue"></textarea>
 
 
 <br/><br/>
@@ -23,7 +20,11 @@ Enter Code Here: <br/>
 <pre>@OutputValue</pre>
 
 @code {
-    private string? InputValue { get; set; }
+    private string? InputValue { get; set; } = @"func main() = { 
+    var x = ""Hello World"";
+    printLine(x); 
+}";
+
 
     private string? OutputValue { get; set; }
 

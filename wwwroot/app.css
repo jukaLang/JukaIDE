@@ -35,6 +35,8 @@ textarea {
     font-weight: bold;
     max-width: 100%;
     word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
 }
 
 pre {
