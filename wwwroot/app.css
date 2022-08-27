@@ -27,6 +27,7 @@ textarea {
     font-size: 1.5em;
     color: white;
     background-color: rgb(51, 52, 71);
+    max-width:100%;
 }
 
 .output {
