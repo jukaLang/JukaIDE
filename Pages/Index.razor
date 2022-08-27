@@ -10,7 +10,10 @@
 <br/>
 
 Enter Code Here: <br/>
-<textarea rows="10" cols="80" @bind="InputValue"></textarea>
+<textarea rows="10" cols="80" @bind="InputValue">func main() = { 
+    var x = "Hello World";
+    printLine(x); 
+}</textarea>
 
 
 <br/><br/>
@@ -26,6 +29,6 @@ Enter Code Here: <br/>
 
     public void RunCode()
     {
-        OutputValue = new Compiler().Go(InputValue, false);
+        OutputValue = new Compiler().Go(InputValue ?? "", false);
     }
 }

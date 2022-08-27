@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JukaCompiler" Version="0.0.86" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.6" PrivateAssets="all" />
+    <PackageReference Include="JukaCompiler" Version="0.0.199" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.8" PrivateAssets="all" />
   </ItemGroup>
     
 </Project>
