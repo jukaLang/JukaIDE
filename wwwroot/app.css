@@ -20,14 +20,23 @@ html {
 
 h1 {
     color: white;
+    padding-left: 20px;
+    border-radius: 3px;
     background-color: rgb(51, 52, 71);
 }
 
 textarea {
-    font-size: 1.5em;
+    margin-top: 20px;
     color: white;
+    max-width: 100%;
+    background: url(./linenumbers.png);
+    background-attachment: local;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    padding-top: 11.9px;
+    border-color: #ccc;
     background-color: rgb(51, 52, 71);
-    max-width:100%;
+    line-height: 16px;
 }
 
 .output {
@@ -41,13 +50,16 @@ textarea {
 
 pre {
     font-size: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 button {
     font-weight: bold;
     display: inline-block;
     margin-top: 15px;
-    margin-right: 25px;
+    margin-right: 35px;
     border: none;
     padding: 10px 20px;
     font-size: 1.1em;

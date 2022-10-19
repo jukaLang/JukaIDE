@@ -1,15 +1,22 @@
 # Juka - Programming Language (Web Assembly Edition)
 
-Official Website: https://jukalang.com
+Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/he4h1mtnoeakl7t0?svg=true)](https://ci.appveyor.com/project/TheAndreiM/juka-webassembly)
 
-AppVeyor (Web Assembly): [![Build status](https://ci.appveyor.com/api/projects/status/he4h1mtnoeakl7t0?svg=true)](https://ci.appveyor.com/project/TheAndreiM/juka-webassembly)
+Run online via: https://wasm.jukalang.com
 
-![jukaWebAssembly](https://user-images.githubusercontent.com/11934545/179395345-eb353195-40ed-4e43-ae18-bad94b7c4473.png)
+If you want to run Juka offline:
+ - Mobile: Just go to the site above and add it to your homescreen
+ - Desktop/Chromium Browser: Click Install App in the Top Right Corner
 
+Visit https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen for more details on adding the site.
+
+Official Juka Website: https://jukalang.com
+
+![jukaWebAssembly](https://user-images.githubusercontent.com/11934545/196586104-94439e3f-8222-4100-af5c-91cbdfd683b0.png)
 
 ## Introduction
 
-This repo is for Web Assembly version of Juka Programming Language.
+This repo is for Web Assembly (Offline Web) version of Juka Programming Language.
 It utilizes JukaCompiler found at https://github.com/jukaLang/juka
 
 
