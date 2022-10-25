@@ -4,7 +4,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>JukaWebAssembly (WASM)</title>
+    <title>Juka Web Assembly Edition</title>
+    <meta data-rh="true" property="og:image" content="/favicon.png">
+    <meta data-rh="true" name="twitter:image" content="/favicon.png">
+    <meta data-rh="true" property="og:url" content="/favicon.png">
+    <meta data-rh="true" name="keywords" content="juka,programming,language,future, runeverywhere, buildonce">
+    <meta data-rh="true" name="twitter:card" content="Juka Programming Language Web Assembly Edition. Visit our official page at https://jukaLang.com Got a question? Connect with us via Discord or Twitter">
+    <meta data-rh="true" property="og:title" content="Juka Programming Language | Web Assembly Edition">
+    <meta data-rh="true" name="description" content="Juka Programming Language - Web Assembly Edition">
+    <meta data-rh="true" property="og:description" content="Juka Programming Language - Web Assembly Edition">
     <link rel="icon" type="image/x-icon" href="/favicon.png">
     <base href="/" />
     <link href="manifest.json" rel="manifest" />
@@ -18,10 +26,15 @@
     <link rel="apple-touch-icon" sizes="96x96" href="maskable_icon_x96.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="maskable_icon_x72.png" />
     <link rel="apple-touch-icon" sizes="48x48" href="maskable_icon_x48.png" />
+    <link href="_content/BlazorMonaco/lib/monaco-editor/min/vs/editor/editor.main.css" rel="stylesheet" />
 </head>
 
 <body>
-<div id="app">Loading Juka Web Assembly...</div>
+    <div id="app">Loading and Caching Juka...Please wait!</div>
+    <script src="_content/BlazorMonaco/lib/monaco-editor/min/vs/loader.js"></script>
+    <script>require.config({ paths: { 'vs': '_content/BlazorMonaco/lib/monaco-editor/min/vs' } });</script>
+    <script src="_content/BlazorMonaco/lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+    <script src="_content/BlazorMonaco/jsInterop.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="sw-registrator.js"></script>
 </body>

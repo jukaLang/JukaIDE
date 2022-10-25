@@ -1,6 +1,6 @@
 ﻿@page "/"
 
-<PageTitle>Juka Programming Language (WASM)</PageTitle>
+<PageTitle>Juka Programming Language</PageTitle>
 
 <h1>Welcome to Juka (Web Assembly Edition)!</h1>
 
@@ -9,27 +9,46 @@
 
 <br/><br/>
 
-Enter Your Code Below and Click Run: <br/>
-<textarea rows="20" cols="100" @bind="InputValue"></textarea>
+Enter Your Code Below and Click Run: <br/><br/>
 
+<MonacoEditor Id="myjukamonaco" ConstructionOptions="EditorConstructionOptions" OnDidChangeModelContent="OnDidChangeModelContent" />
 
 <br/><br/>
 <button @onclick="RunCode">Run Code</button>
 <br/><br/>
-<span class="output">Output:</span>
+<div class="output">Output:</div>
+<span>@ExecutedOn</span>
 <pre>@OutputValue</pre>
 
 @code {
-    private string? InputValue { get; set; } = @"func main() = { 
+    private string? Data { get; set; } = @"func main() = { 
     var x = ""Hello World"";
     printLine(x); 
 }";
-
-
+    private string? ExecutedOn { get; set; }
     private string? OutputValue { get; set; }
 
+    private MonacoEditor? _editor;
+    private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor? editor)
+    {
+        _editor = editor;
+        return new StandaloneEditorConstructionOptions
+        {
+            AutomaticLayout = true,
+            Language = "javascript",
+                Value = Data
+        };
+    }
+
+    public async Task OnDidChangeModelContent(ModelContentChangedEvent e)
+    {
+        var model = await _editor.GetModel();
+        Data = await model.GetValue(EndOfLinePreference.TextDefined, false);
+    }
+    
     public void RunCode()
     {
-        OutputValue = new Compiler().Go(InputValue ?? "", false);
+        OutputValue = new Compiler().Go(Data ?? "", false);
+        ExecutedOn = "Executed on: "+(DateTime.Now).ToString("F");
     }
 }
