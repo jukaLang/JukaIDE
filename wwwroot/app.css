@@ -15,7 +15,6 @@
 
 html {
     font-family: 'Roboto', sans-serif;
-    margin: 20px;
 }
 
 h1 {
@@ -48,6 +47,7 @@ button {
     display: inline-block;
     margin-top: 15px;
     margin-right: 35px;
+    margin-left: 15px;
     border: none;
     padding: 10px 20px;
     font-size: 1.1em;

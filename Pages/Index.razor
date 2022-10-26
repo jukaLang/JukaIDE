@@ -1,8 +1,9 @@
 ﻿@page "/"
+@inject IJSRuntime JS
 
 <PageTitle>Juka Programming Language</PageTitle>
 
-<h1>Welcome to Juka (Web Assembly Edition)!</h1>
+<h1>Welcome to Juka</h1>
 
 <div>This website/app can work offline by installing it in a Chromium (Google Chrome) based browser or bookmarking it on your phone!</div>
 
@@ -21,7 +22,8 @@ Enter Your Code Below and Click Run: <br/><br/>
 <pre>@OutputValue</pre>
 
 @code {
-    private string? Data { get; set; } = @"func main() = { 
+    private string? Data { get; set; } = @"func main() = {
+    // outputs 'Hello World'
     var x = ""Hello World"";
     printLine(x); 
 }";
@@ -32,12 +34,32 @@ Enter Your Code Below and Click Run: <br/><br/>
     private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor? editor)
     {
         _editor = editor;
+        
+        
         return new StandaloneEditorConstructionOptions
         {
             AutomaticLayout = true,
-            Language = "javascript",
+                Language = "juka",
                 Value = Data
         };
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await JS.InvokeVoidAsync("blazorMonaco.languages.register");
+        await MonacoEditorBase.DefineTheme("JukaTheme", new StandaloneThemeData
+        {
+            Base = "vs",
+            Inherit = true,
+            Rules = new List<TokenThemeRule>
+            {
+                new TokenThemeRule { Token = "func", Foreground = "00e0bc" },
+                new TokenThemeRule { Token = "keyword", Foreground = "FF4500" },
+                new TokenThemeRule { Token = "number", Foreground = "54a154" },
+                new TokenThemeRule { Token = "comment", Foreground = "888ed1" }
+            }
+        });
+        await MonacoEditorBase.SetTheme("JukaTheme");
     }
 
     public async Task OnDidChangeModelContent(ModelContentChangedEvent e)

@@ -5,14 +5,15 @@ Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/he4h1
 Run online via: https://wasm.jukalang.com
 
 If you want to run Juka offline:
- - Mobile: Just go to the site above and add it to your homescreen
- - Desktop/Chromium Browser: Click Install App in the Top Right Corner
+ - Mobile: Just go to the site above (https://wasm.jukalang.com) and add it to your homescreen
+ - Desktop/Chromium Browser: Go to the site above and click Install App in the top right corner of the browser's URL (area where you enter a link)
 
 Visit https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen for more details on adding the site.
 
 Official Juka Website: https://jukalang.com
 
-![jukaWebAssembly](https://user-images.githubusercontent.com/11934545/196586104-94439e3f-8222-4100-af5c-91cbdfd683b0.png)
+
+![jukaWebAssembly](https://user-images.githubusercontent.com/11934545/197924254-9fd3fa76-8a91-45fa-9dc1-3ff2cb8cd93f.png)
 
 ## Introduction
 
