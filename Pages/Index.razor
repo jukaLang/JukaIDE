@@ -97,7 +97,7 @@ Enter Your Code Below and Click Run: <br/><br/>
         {
             foreach (var file in e.GetMultipleFiles(1))
             {
-                Data = await new StreamReader(file.OpenReadStream()).ReadToEndAsync();
+                Data = await new StreamReader(file.OpenReadStream(15728640)).ReadToEndAsync();
 
                 _editor.SetValue(Data);
             }
@@ -105,7 +105,7 @@ Enter Your Code Below and Click Run: <br/><br/>
         }
         catch (Exception exc)
         {
-            OutputValue = exc.ToString();
+            OutputValue = "File Failed to load. Make sure the file doesn't exceed 15MB or 15728640 bytes";
         }
         ExecutedOn = "";
     }
