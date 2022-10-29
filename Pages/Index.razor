@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject IJSRuntime JS
+@inject NavigationManager NavManager
 
 <PageTitle>Juka Programming Language</PageTitle>
 
@@ -14,28 +15,39 @@ Enter Your Code Below and Click Run: <br/><br/>
 
 <MonacoEditor Id="myjukamonaco" ConstructionOptions="EditorConstructionOptions" OnDidChangeModelContent="OnDidChangeModelContent" />
 
-<br/><br/>
 <button @onclick="RunCode">Run Code</button>
+<button class="jide_linkbutton" @onclick="LinkToCode">Get Link to Code</button>
+<button class="jide_dlbutton" @onclick="DownloadCode">Download Code</button>
+<InputFile OnChange="@UploadCode" multiple id="filePicker" style="display:none"/>
+<button class="jide_upbutton" onclick="document.getElementById('filePicker').click()">Upload Code</button>
 <br/><br/>
 <div class="output">Output:</div>
 <span>@ExecutedOn</span>
 <pre>@OutputValue</pre>
 
 @code {
-    private string? Data { get; set; } = @"func main() = {
-    // outputs 'Hello World'
-    var x = ""Hello World"";
-    printLine(x); 
-}";
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "code")]
+    public string? Data { get; set; }
+
     private string? ExecutedOn { get; set; }
-    private string? OutputValue { get; set; }
+    private string? OutputValue { get; set; } = "Click \"Run Code\" to run the code!";
 
     private MonacoEditor? _editor;
     private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor? editor)
     {
         _editor = editor;
-        
-        
+
+        if (String.IsNullOrEmpty(Data))
+        {
+            Data = @"func main() = {
+    // outputs 'Hello World'
+    var x = ""Hello World"";
+    printLine(x);
+}";
+        }
+
         return new StandaloneEditorConstructionOptions
         {
             AutomaticLayout = true,
@@ -66,6 +78,36 @@ Enter Your Code Below and Click Run: <br/><br/>
     {
         var model = await _editor.GetModel();
         Data = await model.GetValue(EndOfLinePreference.TextDefined, false);
+    }
+
+    public async Task LinkToCode()
+    {
+        OutputValue = NavManager.BaseUri.ToString() + "?code=" + Uri.EscapeDataString(Data);
+        ExecutedOn = "Executed on: " + (DateTime.Now).ToString("F");
+    }
+
+    public async Task DownloadCode()
+    {
+        await JS.InvokeVoidAsync("blazorMonaco.languages.download", Data);
+    }
+
+    public async Task UploadCode(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            foreach (var file in e.GetMultipleFiles(1))
+            {
+                Data = await new StreamReader(file.OpenReadStream()).ReadToEndAsync();
+
+                _editor.SetValue(Data);
+            }
+            OutputValue = "Click \"Run Code\" to run the new code!";
+        }
+        catch (Exception exc)
+        {
+            OutputValue = exc.ToString();
+        }
+        ExecutedOn = "";
     }
     
     public void RunCode()

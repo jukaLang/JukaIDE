@@ -40,13 +40,14 @@ pre {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 button {
     font-weight: bold;
     display: inline-block;
-    margin-top: 15px;
-    margin-right: 35px;
+    margin-top: 10px;
     margin-left: 15px;
     border: none;
     padding: 10px 20px;
@@ -116,4 +117,185 @@ button {
 
 .decorationContentClass {
     background: lightblue;
+}
+
+.jide_linkbutton {
+    font-weight: bold;
+    display: inline-block;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: orangered;
+    box-shadow: -10px 10px 0 -5px white,-10px 10px 0 0 orangered;
+    outline: 0;
+    border-bottom: 0;
+    animation: jukaRoll4 0.4s 1;
+}
+
+.jide_linkbutton:hover {
+    box-shadow: 10px 10px 0 -5px white,10px 10px 0 0 orangered;
+    animation: jukaRoll3 0.4s 1;
+}
+
+.jide_dlbutton {
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 15px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: orange;
+    box-shadow: -10px 10px 0 -5px white,-10px 10px 0 0 orange;
+    outline: 0;
+    border-bottom: 0;
+    animation: jukaRoll6 0.4s 1;
+}
+
+.jide_dlbutton:hover {
+    box-shadow: 10px 10px 0 -5px white,10px 10px 0 0 orange;
+    animation: jukaRoll5 0.4s 1;
+}
+
+.jide_upbutton {
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 15px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: green;
+    box-shadow: -10px 10px 0 -5px white,-10px 10px 0 0 green;
+    outline: 0;
+    border-bottom: 0;
+    animation: jukaRoll8 0.4s 1;
+}
+
+.jide_upbutton:hover {
+    box-shadow: 10px 10px 0 -5px white,10px 10px 0 0 green;
+    animation: jukaRoll7 0.4s 1;
+}
+
+
+@keyframes jukaRoll8 {
+    0% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 green;
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 green;
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 green;
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 green;
+    }
+}
+
+@keyframes jukaRoll7 {
+    0% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 green;
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 green;
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 green;
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 green;
+    }
+}
+
+
+@keyframes jukaRoll6 {
+    0% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 orange;
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 orange;
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 orange;
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 orange;
+    }
+}
+
+@keyframes jukaRoll5 {
+    0% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 orange;
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 orange;
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 orange;
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 orange;
+    }
+}
+
+@keyframes jukaRoll4 {
+    0% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 orangered;
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 orangered;
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 orangered;
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 orangered;
+    }
+}
+
+@keyframes jukaRoll3 {
+    0% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 orangered;
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 orangered;
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 orangered;
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 orangered;
+    }
 }
