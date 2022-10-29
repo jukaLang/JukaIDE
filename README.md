@@ -13,7 +13,7 @@ Visit https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_h
 Official Juka Website: https://jukalang.com
 
 
-![jukaWebAssembly](https://user-images.githubusercontent.com/11934545/197924254-9fd3fa76-8a91-45fa-9dc1-3ff2cb8cd93f.png)
+![jukaWebAssembly](https://user-images.githubusercontent.com/11934545/198813716-80cb3556-e0ca-441a-8312-53f1e46516eb.png)
 
 ## Introduction
 

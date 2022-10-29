@@ -2,14 +2,15 @@
 @inject IJSRuntime JS
 @inject NavigationManager NavManager
 
-<PageTitle>Juka Programming Language</PageTitle>
+<PageTitle>Juka App (WASM)</PageTitle>
 
-<h1>Welcome to Juka</h1>
+<h1>Welcome to Juka App (WASM)</h1>
 
-<div>This website/app can work offline by installing it in a Chromium (Google Chrome) based browser or bookmarking it on your phone!</div>
+<span>This website/app can work offline by clicking "Install App" near the URL in a Chromium (Google Chrome) based browser if you are on Desktop or clicking "Add to Homescreen" if you are using a phone/tablet.<br/>
+Visit our official website at <a href="https://jukalang.com" target="_blank">https://jukalang.com</a></span>
 
-
-<br/><br/>
+<br/>
+<br/>
 
 Enter Your Code Below and Click Run: <br/><br/>
 
@@ -21,9 +22,8 @@ Enter Your Code Below and Click Run: <br/><br/>
 <InputFile OnChange="@UploadCode" multiple id="filePicker" style="display:none"/>
 <button class="jide_upbutton" onclick="document.getElementById('filePicker').click()">Upload Code</button>
 <br/><br/>
-<div class="output">Output:</div>
-<span>@ExecutedOn</span>
-<pre>@OutputValue</pre>
+<span class="output">Log: </span><button class="clearlog" @onclick="ClearLog">Clear Log</button><br/>
+<div id="OutputVal">@((MarkupString)OutputValue)</div>
 
 @code {
 
@@ -31,8 +31,8 @@ Enter Your Code Below and Click Run: <br/><br/>
     [SupplyParameterFromQuery(Name = "code")]
     public string? Data { get; set; }
 
-    private string? ExecutedOn { get; set; }
-    private string? OutputValue { get; set; } = "Click \"Run Code\" to run the code!";
+    private string? OutputValue { get; set; } = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span> " + "Loading...<br/><br/>";
+    private string? UriValue { get; set; } = "";
 
     private MonacoEditor? _editor;
     private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor? editor)
@@ -72,18 +72,28 @@ Enter Your Code Below and Click Run: <br/><br/>
             }
         });
         await MonacoEditorBase.SetTheme("JukaTheme");
+        OutputValue = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span> " + "Click \"Run Code\" to run the code!<br/><br/>" + OutputValue;
     }
 
     public async Task OnDidChangeModelContent(ModelContentChangedEvent e)
     {
-        var model = await _editor.GetModel();
-        Data = await model.GetValue(EndOfLinePreference.TextDefined, false);
+        if (_editor != null)
+        {
+            var model = await _editor.GetModel();
+            Data = await model.GetValue(EndOfLinePreference.TextDefined, false);
+            UriValue = "?code=" + Uri.EscapeDataString(Data);
+            NavManager.NavigateTo($"/{UriValue}");
+        }
     }
 
-    public async Task LinkToCode()
+    public void ClearLog()
     {
-        OutputValue = NavManager.BaseUri.ToString() + "?code=" + Uri.EscapeDataString(Data);
-        ExecutedOn = "Executed on: " + (DateTime.Now).ToString("F");
+        OutputValue = "";
+    }
+
+    public void LinkToCode()
+    {
+        OutputValue = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span> " + NavManager.BaseUri + UriValue + "<br/><br/>" + OutputValue;
     }
 
     public async Task DownloadCode()
@@ -93,26 +103,28 @@ Enter Your Code Below and Click Run: <br/><br/>
 
     public async Task UploadCode(InputFileChangeEventArgs e)
     {
-        try
+        if (_editor != null)
         {
-            foreach (var file in e.GetMultipleFiles(1))
+            OutputValue = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span> " + "Loading file...<br/><br/>" + OutputValue;
+            try
             {
-                Data = await new StreamReader(file.OpenReadStream(15728640)).ReadToEndAsync();
+                foreach (var file in e.GetMultipleFiles(1))
+                {
+                    Data = await new StreamReader(file.OpenReadStream(15728640)).ReadToEndAsync();
 
-                _editor.SetValue(Data);
+                    await _editor.SetValue(Data);
+                }
+                OutputValue = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span> " + "Loaded file...<br/><br/>" + OutputValue;
             }
-            OutputValue = "Click \"Run Code\" to run the new code!";
+            catch (Exception)
+            {
+                OutputValue = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span> " + "File Failed to load. Make sure the file doesn't exceed 15MB or 15728640 bytes<br/><br/>" + OutputValue;
+            }
         }
-        catch (Exception exc)
-        {
-            OutputValue = "File Failed to load. Make sure the file doesn't exceed 15MB or 15728640 bytes";
-        }
-        ExecutedOn = "";
     }
     
     public void RunCode()
     {
-        OutputValue = new Compiler().Go(Data ?? "", false);
-        ExecutedOn = "Executed on: "+(DateTime.Now).ToString("F");
+        OutputValue = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span><span class=\"outside\"> [Running Juka...]</span></br><span class=\"inside\">" + new Compiler().Go(Data ?? "", false).Replace(Environment.NewLine, "<br/>") + "</span><br/><span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span><span class=\"outsidet\"> [Completed]</span><br/><br/>" + OutputValue;
     }
 }
