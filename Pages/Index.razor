@@ -7,7 +7,7 @@
 <h1>Welcome to Juka App (WASM)</h1>
 
 <span>This website/app can work offline by clicking "Install App" near the URL in a Chromium (Google Chrome) based browser if you are on Desktop or clicking "Add to Homescreen" if you are using a phone/tablet.<br/>
-Visit our official website at <a href="https://jukalang.com" target="_blank">https://jukalang.com</a></span>
+    Visit our official website at <a href="https://jukalang.com" target="_blank">https://jukalang.com</a></span>
 
 <br/>
 <br/>
@@ -21,9 +21,10 @@ Enter Your Code Below and Click Run: <br/><br/>
 <button class="jide_dlbutton" @onclick="DownloadCode">Download Code</button>
 <InputFile OnChange="@UploadCode" multiple id="filePicker" style="display:none"/>
 <button class="jide_upbutton" onclick="document.getElementById('filePicker').click()">Upload Code</button>
+<button @onclick="ChangeDark">@(DarkMode)</button>
 <br/><br/>
 <span class="output">Log: </span><button class="clearlog" @onclick="ClearLog">Clear Log</button><br/>
-<div id="OutputVal">@((MarkupString)OutputValue)</div>
+<div id="OutputVal">@((MarkupString)(OutputValue ?? ""))</div>
 
 @code {
 
@@ -33,6 +34,8 @@ Enter Your Code Below and Click Run: <br/><br/>
 
     private string? OutputValue { get; set; } = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span> " + "Loading...<br/><br/>";
     private string? UriValue { get; set; } = "";
+
+    private string DarkMode { get; set; } = "🌕";
 
     private MonacoEditor? _editor;
     private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor? editor)
@@ -55,7 +58,7 @@ Enter Your Code Below and Click Run: <br/><br/>
                 Value = Data
         };
     }
-    
+
     protected override async Task OnInitializedAsync()
     {
         await JS.InvokeVoidAsync("blazorMonaco.languages.register");
@@ -65,12 +68,25 @@ Enter Your Code Below and Click Run: <br/><br/>
             Inherit = true,
             Rules = new List<TokenThemeRule>
             {
-                new TokenThemeRule { Token = "func", Foreground = "00e0bc" },
-                new TokenThemeRule { Token = "keyword", Foreground = "FF4500" },
-                new TokenThemeRule { Token = "number", Foreground = "54a154" },
-                new TokenThemeRule { Token = "comment", Foreground = "888ed1" }
+                new() { Token = "func", Foreground = "00e0bc" },
+                new() { Token = "keyword", Foreground = "FF4500" },
+                new() { Token = "number", Foreground = "54a154" },
+                new() { Token = "comment", Foreground = "888ed1" }
             }
         });
+        await MonacoEditorBase.DefineTheme("JukaThemeDark", new StandaloneThemeData
+        {
+            Base = "vs-dark",
+            Inherit = true,
+            Rules = new List<TokenThemeRule>
+            {
+                new() { Token = "func", Foreground = "00e0bc" },
+                new() { Token = "keyword", Foreground = "FF4500" },
+                new() { Token = "number", Foreground = "54a154" },
+                new() { Token = "comment", Foreground = "888ed1" }
+            }
+        });
+        
         await MonacoEditorBase.SetTheme("JukaTheme");
         OutputValue = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span> " + "Click \"Run Code\" to run the code!<br/><br/>" + OutputValue;
     }
@@ -126,5 +142,21 @@ Enter Your Code Below and Click Run: <br/><br/>
     public void RunCode()
     {
         OutputValue = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span><span class=\"outside\"> [Running Juka...]</span></br><span class=\"inside\">" + new Compiler().Go(Data ?? "", false).Replace(Environment.NewLine, "<br/>") + "</span><br/><span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span><span class=\"outsidet\"> [Completed]</span><br/><br/>" + OutputValue;
+    }
+
+    public async Task ChangeDark()
+    {
+        if (DarkMode == "🌕")
+        {
+            await MonacoEditorBase.SetTheme("JukaThemeDark");
+            await JS.InvokeVoidAsync("blazorMonaco.languages.dark");
+            DarkMode = "🌞";
+        }
+        else
+        {
+            await MonacoEditorBase.SetTheme("JukaTheme");
+            await JS.InvokeVoidAsync("blazorMonaco.languages.light");
+            DarkMode = "🌕";
+        }
     }
 }

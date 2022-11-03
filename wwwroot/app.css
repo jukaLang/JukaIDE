@@ -17,6 +17,11 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 
+html[data-theme='dark'] {
+    background-color: black;
+    color: white;
+}
+
 h1 {
     color: white;
     padding-left: 20px;
@@ -67,6 +72,22 @@ h1 {
     box-shadow: none;
 }
 
+html[data-theme='dark'] .clearlog {
+    margin: 0;
+    animation: none;
+    box-shadow: none;
+    background-color: #007acc;
+    color: white;
+    padding: 4px;
+    transition: none;
+}
+
+html[data-theme='dark'] .clearlog:hover {
+    transition: none;
+    animation: none;
+    box-shadow: none;
+}
+
 button {
     font-weight: bold;
     display: inline-block;
@@ -92,41 +113,15 @@ button:hover {
     animation: jukaRoll 0.4s 1;
 }
 
-@keyframes jukaRoll2 {
-    0% {
-        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 rgb(0, 224, 188);
-    }
-
-    33.3333% {
-        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 rgb(0, 224, 188);
-    }
-
-    66.6666% {
-        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 rgb(0, 224, 188);
-    }
-
-    100% {
-        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 rgb(0, 224, 188);
-    }
+html[data-theme='dark'] button {
+    box-shadow: -10px 10px 0 -5px black,-10px 10px 0 0 rgb(0,224,188);
+    animation: jukaDarkRoll2 0.4s 1;
 }
 
-@keyframes jukaRoll {
-    0% {
-        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 rgb(0, 224, 188);
+html[data-theme='dark'] button:hover {
+        box-shadow: 10px 10px 0 -5px black,10px 10px 0 0 rgb(0,224,188);
+        animation: jukaDarkRoll 0.4s 1;
     }
-
-    33.3333% {
-        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 rgb(0, 224, 188);
-    }
-
-    66.6666% {
-        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 rgb(0, 224, 188);
-    }
-
-    100% {
-        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 rgb(0, 224, 188);
-    }
-}
 
 .monaco-editor-container {
     height: 325px;
@@ -164,6 +159,16 @@ button:hover {
     animation: jukaRoll3 0.4s 1;
 }
 
+html[data-theme='dark'] .jide_linkbutton {
+    box-shadow: -10px 10px 0 -5px black,-10px 10px 0 0 orangered;
+    animation: jukaDarkRoll4 0.4s 1;
+}
+
+html[data-theme='dark'] .jide_linkbutton:hover {
+    box-shadow: 10px 10px 0 -5px black,10px 10px 0 0 orangered;
+    animation: jukaDarkRoll3 0.4s 1;
+}
+
 .jide_dlbutton {
     font-weight: bold;
     display: inline-block;
@@ -188,6 +193,16 @@ button:hover {
     animation: jukaRoll5 0.4s 1;
 }
 
+html[data-theme='dark'] .jide_dlbutton {
+    box-shadow: -10px 10px 0 -5px black,-10px 10px 0 0 orange;
+    animation: jukaDarkRoll6 0.4s 1;
+}
+
+html[data-theme='dark'] .jide_dlbutton:hover {
+    box-shadow: 10px 10px 0 -5px black,10px 10px 0 0 orange;
+    animation: jukaDarkRoll5 0.4s 1;
+}
+
 .jide_upbutton {
     font-weight: bold;
     display: inline-block;
@@ -210,6 +225,16 @@ button:hover {
 .jide_upbutton:hover {
     box-shadow: 10px 10px 0 -5px white,10px 10px 0 0 green;
     animation: jukaRoll7 0.4s 1;
+}
+
+html[data-theme='dark'] .jide_upbutton {
+    box-shadow: -10px 10px 0 -5px black,-10px 10px 0 0 green;
+    animation: jukaDarkRoll7 0.4s 1;
+}
+
+html[data-theme='dark'] .jide_upbutton:hover {
+    box-shadow: 10px 10px 0 -5px black,10px 10px 0 0 green;
+    animation: jukaDarkRoll7 0.4s 1;
 }
 
 
@@ -319,6 +344,189 @@ button:hover {
 
     100% {
         box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 orangered;
+    }
+}
+
+@keyframes jukaRoll2 {
+    0% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 rgb(0, 224, 188);
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 rgb(0, 224, 188);
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 rgb(0, 224, 188);
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 rgb(0, 224, 188);
+    }
+}
+
+@keyframes jukaRoll {
+    0% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 rgb(0, 224, 188);
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 rgb(0, 224, 188);
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 rgb(0, 224, 188);
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 rgb(0, 224, 188);
+    }
+}
+
+@keyframes jukaDarkRoll8 {
+    0% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 green;
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 green;
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 green;
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 green;
+    }
+}
+
+@keyframes jukaDarkRoll7 {
+    0% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 green;
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 green;
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 green;
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 green;
+    }
+}
+
+@keyframes jukaDarkRoll6 {
+    0% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 orange;
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 orange;
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 orange;
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 orange;
+    }
+}
+
+@keyframes jukaDarkRoll5 {
+    0% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 orange;
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 orange;
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 orange;
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 orange;
+    }
+}
+
+
+@keyframes jukaDarkRoll4 {
+    0% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 orangered;
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 orangered;
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 orangered;
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 orangered;
+    }
+}
+
+@keyframes jukaDarkRoll3 {
+    0% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 orangered;
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 orangered;
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 orangered;
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 orangered;
+    }
+}
+
+
+
+@keyframes jukaDarkRoll2 {
+    0% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 rgb(0, 224, 188);
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 rgb(0, 224, 188);
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 rgb(0, 224, 188);
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 rgb(0, 224, 188);
+    }
+}
+
+@keyframes jukaDarkRoll {
+    0% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 rgb(0, 224, 188);
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 rgb(0, 224, 188);
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 rgb(0, 224, 188);
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 rgb(0, 224, 188);
     }
 }
 

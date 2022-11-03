@@ -92,6 +92,12 @@ window.blazorMonaco.languages = {
             }
         });
     },
+    light: function () {
+        document.documentElement.setAttribute("data-theme", "light");
+    },
+    dark: function () {
+        document.documentElement.setAttribute("data-theme", "dark");
+    },
     download: function (text) {
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
