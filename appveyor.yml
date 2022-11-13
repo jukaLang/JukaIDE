@@ -10,7 +10,6 @@ skip_non_tags: false
 
 install:
   - ps: $env:package_version = (Invoke-WebRequest -URI "https://api.github.com/repos/JukaLang/juka/releases/latest" | ConvertFrom-Json).tag_name
-  - ps: Update-AppveyorBuild -Version "$env:package_version - $($env:APPVEYOR_BUILD_VERSION)"
   - ps: Update-AppveyorBuild -Version "$env:package_version"
 
 dotnet_csproj:
