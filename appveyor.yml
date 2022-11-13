@@ -29,7 +29,6 @@ build_script:
         {
         $env:MY_XT="$($env:APPVEYOR_REPO_COMMIT_MESSAGE) \n $($env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED)"
         }
-  - ps: |
         $env:MY_AV= $(APPVEYOR_BUILD_VERSION)
         if($env:APPVEYOR_BUILD_VERSION -notlike '0.*') {
         {
