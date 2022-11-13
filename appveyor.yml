@@ -30,9 +30,9 @@ build_script:
         {
         $env:MY_XT="$($env:APPVEYOR_REPO_COMMIT_MESSAGE) \n $($env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED)"
         }
-        if($env:APPVEYOR_BUILD_VERSION -notlike '0.*') {
+        if ($env:APPVEYOR_BUILD_VERSION -notlike "0.*")
         {
-        $env:MY_AV = "$($env:package_version)-Nightly-$($env:APPVEYOR_BUILD_VERSION)"
+        $env:MY_AV="$($env:package_version)-Nightly-$($env:APPVEYOR_BUILD_VERSION)"
         }
 
 
