@@ -33,7 +33,7 @@ build_script:
         if($env:APPVEYOR_BUILD_VERSION -notlike '0.*') {
         {
         $env:MY_AV = "$($env:package_version)-Nightly-$($env:APPVEYOR_BUILD_VERSION)"
-	}
+        }
 
 
 deploy:
