@@ -29,19 +29,6 @@ build_script:
         {
         $env:MY_XT="$($env:APPVEYOR_REPO_COMMIT_MESSAGE) \n $($env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED) "
         }
-  - dotnet workload install wasm-tools
-  - dotnet add package JukaCompiler
-  - dotnet publish -c Release JukaWebAssembly.sln
-
-
-
-configuration: Release
-
-artifacts:
-- path: 'bin\Release\net6.0\publish\wwwroot'
-  name: Juka_WebAssembly_$(APPVEYOR_BUILD_VERSION)
-  type: zip
-
 
 
 deploy:
