@@ -29,14 +29,20 @@ build_script:
         {
         $env:MY_XT="$($env:APPVEYOR_REPO_COMMIT_MESSAGE) \n $($env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED)"
         }
+  - ps: |
+        $env:MY_AV= $(APPVEYOR_BUILD_VERSION)
+        if($env:APPVEYOR_BUILD_VERSION -notlike '0.*') {
+        {
+        $env:MY_AV = "$($env:package_version)-Nightly-$($env:APPVEYOR_BUILD_VERSION)"
+	}
 
 
 deploy:
     # Deploy to GitHub Releases
   - provider: GitHub
     artifact: /.*\.zip/
-    tag: '$(APPVEYOR_BUILD_VERSION)'
-    release: 'JukaWASM v$(APPVEYOR_BUILD_VERSION)'
+    tag: "$(MY_AV)"
+    release: "JukaWASM v$(MY_AV)"
     description: "## 🍂 Changelog \n $(MY_XT) "
     auth_token:
       secure: XCqLJKrsMnRCCEEcsPL53Emba/2GrP172INtXx86eu5XBbed614ug/2dcx8MZwmr
