@@ -10,6 +10,7 @@ skip_non_tags: false
 
 install:
   - ps: $env:package_version = (Invoke-WebRequest -URI "https://api.github.com/repos/JukaLang/juka/releases/latest" | ConvertFrom-Json).tag_name
+  - ps: Update-AppveyorBuild -Version "$env:package_version - $(APPVEYOR_BUILD_VERSION)"
   - ps: Update-AppveyorBuild -Version "$env:package_version"
 
 dotnet_csproj:
@@ -23,6 +24,13 @@ dotnet_csproj:
 
 
 build_script:
+ - ps: |
+        if ($(APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED))
+        {
+        $env:MY_XT="\n $(APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED)"
+        } else{
+        $env:MY_XT=""
+        }
   - dotnet workload install wasm-tools
   - dotnet add package JukaCompiler
   - dotnet publish -c Release JukaWebAssembly.sln
@@ -42,6 +50,9 @@ deploy:
     # Deploy to GitHub Releases
   - provider: GitHub
     artifact: /.*\.zip/
+    tag: '$(APPVEYOR_BUILD_VERSION)'
+    release: 'JukaWASM v$(APPVEYOR_BUILD_VERSION)'
+    description: '## 🍂 Changelog \n $(APPVEYOR_REPO_COMMIT_MESSAGE) $(env:MY_XT) '
     auth_token:
       secure: XCqLJKrsMnRCCEEcsPL53Emba/2GrP172INtXx86eu5XBbed614ug/2dcx8MZwmr
     draft: false
