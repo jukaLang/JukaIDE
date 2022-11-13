@@ -24,7 +24,7 @@ dotnet_csproj:
 
 
 build_script:
- - ps: |
+  - ps: |
         if ($(APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED))
         {
         $env:MY_XT="\n $(APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED)"
