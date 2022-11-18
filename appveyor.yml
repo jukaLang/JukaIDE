@@ -54,7 +54,7 @@ deploy:
     artifact: /.*\.zip/
     tag: "$(MY_AV)"
     release: "📦 Juka Web App v$(MY_AV)"
-    description: "$($env:changelog) \n ## 🧩 Web App Changes \n $(MY_XT)"
+    description: "$(changelog) \n ## 🧩 Web App Changes \n $(MY_XT)"
     auth_token:
       secure: XCqLJKrsMnRCCEEcsPL53Emba/2GrP172INtXx86eu5XBbed614ug/2dcx8MZwmr
     draft: false
