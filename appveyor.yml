@@ -8,6 +8,8 @@ branches:
 skip_tags: true
 skip_non_tags: false
 
+version: '{build}'
+
 install:
   - ps: $env:package_version = (Invoke-WebRequest -URI "https://api.github.com/repos/JukaLang/juka/releases/latest" | ConvertFrom-Json).tag_name
   - ps: $env:changelog = (Invoke-WebRequest -URI "https://api.github.com/repos/JukaLang/juka/releases/latest" -UseBasicParsing | ConvertFrom-Json).body.Split([Environment]::NewLine) | Select -Skip 1
@@ -35,18 +37,7 @@ build_script:
         {
         $env:MY_AV="$($env:package_version)-Nightly-$($env:APPVEYOR_BUILD_VERSION)"
         }
-  - dotnet workload install wasm-tools
-  - dotnet add package JukaCompiler
-  - dotnet publish -c Release JukaWebAssembly.sln
 
-
-
-configuration: Release
-
-artifacts:
-- path: 'bin\Release\net6.0\publish\wwwroot'
-  name: Juka_WebAssembly_$(APPVEYOR_BUILD_VERSION)
-  type: zip
 
 deploy:
     # Deploy to GitHub Releases
