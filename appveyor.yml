@@ -12,7 +12,7 @@ version: '{build}'
 
 install:
   - ps: $env:package_version = (Invoke-WebRequest -URI "https://api.github.com/repos/JukaLang/juka/releases/latest" | ConvertFrom-Json).tag_name
-  - ps: $env:changelog = (Invoke-WebRequest -URI "https://api.github.com/repos/JukaLang/juka/releases/latest" -UseBasicParsing | ConvertFrom-Json).body.Split([Environment]::NewLine) | Select -Skip 1
+  - ps: $env:changelog = (Invoke-WebRequest -URI "https://api.github.com/repos/JukaLang/juka/releases/latest" -UseBasicParsing | ConvertFrom-Json).body.Split([Environment]::NewLine) | Select -Skip 1 | Out-String
   - ps: Update-AppveyorBuild -Version "$env:package_version"
 
 dotnet_csproj:
