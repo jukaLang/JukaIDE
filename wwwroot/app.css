@@ -42,6 +42,12 @@ h1 {
     color: #652d90;
 }
 
+.eon::target-text:hover:after {
+    background-color: cornflowerblue;
+    color: white;
+    content: "Copy";
+}
+
 .outside {
     color: rgb(0 224 188);
     font-style: italic;
@@ -545,3 +551,4 @@ html[data-theme='dark'] .jide_upbutton:hover {
         right: 2rem;
     }
 }
+

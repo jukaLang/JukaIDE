@@ -91,6 +91,11 @@ Enter Your Code Below and Click Run: <br/><br/>
         OutputValue = "<span class=\"eon\">[" + DateTime.Now.ToString("F") + "]</span> " + "Click \"Run Code\" to run the code!<br/><br/>" + OutputValue;
     }
 
+    public async Task CopyToClipboard(string text)
+    {
+        await JS.InvokeVoidAsync("navigator.clipboard.writeText", text);
+    }
+
     public async Task OnDidChangeModelContent(ModelContentChangedEvent e)
     {
         if (_editor != null)
