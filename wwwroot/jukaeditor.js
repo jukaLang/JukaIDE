@@ -98,10 +98,10 @@ window.blazorMonaco.languages = {
     dark: function () {
         document.documentElement.setAttribute("data-theme", "dark");
     },
-    download: function (text) {
+    download: function (text, name) {
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', "main.juk");
+        element.setAttribute('download', name || "main.juk");
 
         element.style.display = 'none';
         document.body.appendChild(element);

@@ -34,18 +34,24 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px;
-    white-space: pre-wrap;
-    word-wrap: break-word;
 }
 
 .eon {
     color: #652d90;
 }
 
-.eon::target-text:hover:after {
-    background-color: cornflowerblue;
+.inside{
+    cursor: pointer;
+}
+
+.inside:hover:after {
+    background-color: #0275d8;
     color: white;
-    content: "Copy";
+    border-radius: 5px;
+    content: "Click to Copy";
+    cursor: pointer;
+    padding: 3px;
+    font-size: 12px;
 }
 
 .outside {
@@ -235,12 +241,84 @@ html[data-theme='dark'] .jide_dlbutton:hover {
 
 html[data-theme='dark'] .jide_upbutton {
     box-shadow: -10px 10px 0 -5px black,-10px 10px 0 0 green;
-    animation: jukaDarkRoll7 0.4s 1;
+    animation: jukaDarkRoll8 0.4s 1;
 }
 
 html[data-theme='dark'] .jide_upbutton:hover {
     box-shadow: 10px 10px 0 -5px black,10px 10px 0 0 green;
     animation: jukaDarkRoll7 0.4s 1;
+}
+
+
+
+.jide_apibutton {
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 15px;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #795548;
+    box-shadow: -10px 10px 0 -5px white,-10px 10px 0 0 #795548;
+    outline: 0;
+    border-bottom: 0;
+    animation: jukaRoll10 0.4s 1;
+}
+
+.jide_apibutton:hover {
+    box-shadow: 10px 10px 0 -5px white,10px 10px 0 0 #795548;
+    animation: jukaRoll9 0.4s 1;
+}
+
+html[data-theme='dark'] .jide_apibutton {
+    box-shadow: -10px 10px 0 -5px black,-10px 10px 0 0 #795548;
+    animation: jukaDarkRoll10 0.4s 1;
+}
+
+html[data-theme='dark'] .jide_apibutton:hover {
+    box-shadow: 10px 10px 0 -5px black,10px 10px 0 0 #795548;
+    animation: jukaDarkRoll9 0.4s 1;
+}
+
+@keyframes jukaRoll10 {
+    0% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 #795548;
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 #795548;
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 #795548;
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 #795548;
+    }
+}
+
+@keyframes jukaRoll9 {
+    0% {
+        box-shadow: -10px 10px 0 -5px white, -10px 10px 0 0 #795548;
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px white, -10px -10px 0 0 #795548;
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px white, 10px -10px 0 0 #795548;
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 #795548;
+    }
 }
 
 
@@ -386,6 +464,44 @@ html[data-theme='dark'] .jide_upbutton:hover {
 
     100% {
         box-shadow: 10px 10px 0 -5px white, 10px 10px 0 0 rgb(0, 224, 188);
+    }
+}
+
+
+@keyframes jukaDarkRoll10 {
+    0% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 #795548;
+    }
+
+    33.3333% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 #795548;
+    }
+
+    66.6666% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 #795548;
+    }
+
+    100% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 #795548;
+    }
+
+}
+
+@keyframes jukaDarkRoll9 {
+    0% {
+        box-shadow: -10px 10px 0 -5px rgb(0, 0, 0), -10px 10px 0 0 #795548;
+    }
+
+    33.3333% {
+        box-shadow: -10px -10px 0 -5px rgb(0, 0, 0), -10px -10px 0 0 #795548;
+    }
+
+    66.6666% {
+        box-shadow: 10px -10px 0 -5px rgb(0, 0, 0), 10px -10px 0 0 #795548;
+    }
+
+    100% {
+        box-shadow: 10px 10px 0 -5px rgb(0, 0, 0), 10px 10px 0 0 #795548;
     }
 }
 
@@ -552,3 +668,62 @@ html[data-theme='dark'] .jide_upbutton:hover {
     }
 }
 
+
+/* Style the tab */
+.jide_tab {
+    overflow: hidden;
+    border: none;
+    background-color: #f1f1f1;
+}
+
+html[data-theme='dark'] .jide_tab {
+    background-color: #2e2f40;
+}
+
+/* Style the buttons inside the tab */
+.jide_tab .jide_tab_button {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top: 4px solid rgb(25,225,198);
+    background-color: rgb(48, 56, 70);
+    color: white;
+    float: left;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    margin-right: 3px;
+    animation: none;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Change background color of buttons on hover */
+.jide_tab .jide_tab_button:hover {
+    background-color: #ef7171;
+}
+
+/* Create an active/current tablink class */
+.jide_tab .jide_tab_button.active {
+    background-color: #ef7171;
+}
+
+.jide_tab .jide_plusbutton {
+    font-weight: bold;
+    border: none;
+    margin-top: 4px;
+    padding: 12px 10px;
+    cursor: pointer;
+    margin-left: 5px;
+    box-shadow:none;
+    border-radius:0;
+    animation: none;
+    background: transparent;
+}
+
+.jide_status_neutral {
+    color: #00dfbb;
+}
