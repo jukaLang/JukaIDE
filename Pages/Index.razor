@@ -1,6 +1,8 @@
 ﻿@page "/"
+@using System.Text.Json
 @inject IJSRuntime JS
 @inject NavigationManager NavManager
+@inject HttpClient Http
 
 <PageTitle>Juka IDE (WebApp)</PageTitle>
 
@@ -173,10 +175,13 @@ Enter Your Code Below and Click Run: <br/><br/>
         tabs.getCurrentTab().Output.Add(new Compiler().Go(Data ?? "", false), starttime);
     }
 
-    public void RunAPI()
+    public async Task RunAPI()
     {
         DateTime starttime = DateTime.Now;
-        tabs.getCurrentTab().Output.Add(new Compiler().Go(Data ?? "", false), starttime);
+        var httpout = await Http.GetFromJsonAsync<JsonElement>("https://api.jukalang.com/" + Uri.EscapeDataString(Data));
+
+        string outp = httpout.GetProperty("output").GetString() ?? "Failed to Connect to the API";
+        tabs.getCurrentTab().Output.Add(outp, starttime);
     }
 
     public async Task ChangeDark()
