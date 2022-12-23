@@ -16,13 +16,14 @@
 
 Enter Your Code Below and Click Run: <br/><br/>
 
+
+<div class="jide_tab">
 @foreach (var tab in tabs.List())
 {
-<div class="jide_tab">
-    <button class="jide_tab_button"><span class="jide_status_neutral">●</span> <span contenteditable="true">Untitled.juk</span></button>
-    <button class="jide_plusbutton">+</button>
-</div>
+    <button class="jide_tab_button"><span class="@((tab.Status == 0? "jide_status_neutral" : "jide_status_edited"))">●</span> <span contenteditable="true">@tab.Name</span> <span>&nbsp;&nbsp;✖</span></button>
 }
+    <button class="jide_plusbutton" @onclick="addTab">+</button>
+</div>
 <MonacoEditor Id="myjukamonaco" ConstructionOptions="EditorConstructionOptions" OnDidChangeModelContent="OnDidChangeModelContent" />
 
 <button @onclick="RunCode">Run Locally (Offline)</button>
@@ -127,7 +128,13 @@ Enter Your Code Below and Click Run: <br/><br/>
             Data = await model.GetValue(EndOfLinePreference.TextDefined, false);
             UriValue = "?code=" + Uri.EscapeDataString(Data);
             NavManager.NavigateTo($"/{UriValue}");
+            tabs.getCurrentTab().Status = 1;
         }
+    }
+
+    public void addTab()
+    {
+        tabs.Add();
     }
 
     public void ClearLog()

@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="BlazorMonaco" Version="2.1.0" />
-    <PackageReference Include="JukaCompiler" Version="0.0.276" />
+    <PackageReference Include="JukaCompiler" Version="0.0.278" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
   </ItemGroup>

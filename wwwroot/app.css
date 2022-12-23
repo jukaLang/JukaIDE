@@ -727,3 +727,7 @@ html[data-theme='dark'] .jide_tab {
 .jide_status_neutral {
     color: #00dfbb;
 }
+
+.jide_status_edited {
+    color: yellow;
+}

@@ -25,11 +25,19 @@ namespace JukaWebAssembly
             CurrentTab = tabs.Count()-1;
         }
 
+        public void Delete()
+        {
+            tabs.Dequeue();
+        }
+
+        public void Delete(int tab)
+        {
+
+        }
+
         public Tab getCurrentTab()
         {
             return tabs.ElementAt(CurrentTab);
         }
-
-
     }
 }
