@@ -1,4 +1,4 @@
-﻿namespace JukaWebAssembly
+﻿namespace JukaIDE
 {
     public class TabList
     {
@@ -20,7 +20,7 @@
         public void Add(string name = "Untitled.juk",string code="")
         {
             tabs.Enqueue(new Tab(name,code));
-            CurrentTab = tabs.Count()-1;
+            CurrentTab = tabs.Count-1;
         }
         
         public void Delete(int id)
@@ -30,7 +30,7 @@
             if (CurrentTab > 0)
             {
                 CurrentTab--;
-            } else if(tabs.Count() > 0)
+            } else if(tabs.Any())
             {
                 CurrentTab = 0;
             }

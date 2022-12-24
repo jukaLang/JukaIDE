@@ -703,7 +703,9 @@ html[data-theme='dark'] .jide_tab {
 
 html[data-theme='dark'] .jide_tab .jide_tab_button {
     animation: none;
+    box-shadow: none;
 }
+
 /* Change background color of buttons on hover */
 .jide_tab .jide_tab_button:hover {
     background-color: #ef7171;
@@ -733,4 +735,4 @@ html[data-theme='dark'] .jide_tab .jide_tab_button {
 
 .jide_status_edited {
     color: yellow;
-}0 
+} 

@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace JukaWebAssembly
+﻿namespace JukaIDE
 {
     public class EntryList
     {

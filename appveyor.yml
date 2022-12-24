@@ -17,7 +17,7 @@ install:
 
 dotnet_csproj:
   patch: true
-  file: 'JukaWebAssembly.csproj'
+  file: 'JukaIDE.csproj'
   version: $(APPVEYOR_BUILD_VERSION)
   package_version: $(APPVEYOR_BUILD_VERSION)
   assembly_version: $(APPVEYOR_BUILD_VERSION)
@@ -39,7 +39,7 @@ build_script:
         }
   - dotnet workload install wasm-tools
   - dotnet add package JukaCompiler
-  - dotnet publish -c Release JukaWebAssembly.sln
+  - dotnet publish -c Release JukaIDE.sln
 
 
 

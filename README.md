@@ -1,6 +1,6 @@
 # Juka - Programming Language (IDE)
 
-Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/he4h1mtnoeakl7t0?svg=true)](https://ci.appveyor.com/project/TheAndreiM/juka-webassembly)
+Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/he4h1mtnoeakl7t0?svg=true)](https://ci.appveyor.com/project/TheAndreiM/jukaide)
 
 Run online via: https://ide.jukalang.com
 
@@ -13,11 +13,11 @@ Visit https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_h
 Official Juka Website: https://jukalang.com
 
 
-![jukaWebAssembly](https://user-images.githubusercontent.com/11934545/198813716-80cb3556-e0ca-441a-8312-53f1e46516eb.png)
+![jukaIDE](https://user-images.githubusercontent.com/11934545/209417264-e0f168b6-7ab8-4e06-bc3a-439c15056fc5.png)
 
 ## Introduction
 
-This repo is for IDE (Offline Web) version of Juka Programming Language.
+This repo is for IDE (Offline Web App) version of Juka Programming Language.
 It utilizes JukaCompiler found at https://github.com/jukaLang/juka
 
 

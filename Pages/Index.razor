@@ -215,11 +215,14 @@ Enter Your Code Below and Click Run: <br/><br/>
 
     public async Task RunAPI()
     {
-        DateTime starttime = DateTime.Now;
-        var httpout = await Http.GetFromJsonAsync<JsonElement>("https://api.jukalang.com/" + Uri.EscapeDataString(Data));
+        if (Data != null)
+        {
+            DateTime starttime = DateTime.Now;
+            var httpout = await Http.GetFromJsonAsync<JsonElement>("https://api.jukalang.com/" + Uri.EscapeDataString(Data));
 
-        string outp = httpout.GetProperty("output").GetString() ?? "Failed to Connect to the API";
-        tabs.GetCurrentTab().Output.Add(outp, starttime);
+            string outp = httpout.GetProperty("output").GetString() ?? "Failed to Connect to the API";
+            tabs.GetCurrentTab().Output.Add(outp, starttime);
+        }
     }
 
     public async Task ChangeDark()

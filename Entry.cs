@@ -1,4 +1,4 @@
-﻿namespace JukaWebAssembly
+﻿namespace JukaIDE
 {
     public class Entry
     {

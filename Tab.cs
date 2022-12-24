@@ -1,7 +1,4 @@
-﻿using System.Data;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace JukaWebAssembly
+﻿namespace JukaIDE
 {
     public class Tab
     {
