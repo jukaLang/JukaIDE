@@ -47,7 +47,7 @@ configuration: Release
 
 artifacts:
 - path: 'bin\Release\net6.0\publish\wwwroot'
-  name: Juka_WebAssembly_$(APPVEYOR_BUILD_VERSION)
+  name: Juka_IDE_$(APPVEYOR_BUILD_VERSION)
   type: zip
 
 deploy:
@@ -55,8 +55,8 @@ deploy:
   - provider: GitHub
     artifact: /.*\.zip/
     tag: "$(MY_AV)"
-    release: "📦 Juka Web App v$(MY_AV)"
-    description: "## 🍂 Juka Changes \n $(changelog) \n ## 🧩 Web App Changes \n $(MY_XT)"
+    release: "📦 Juka IDE v$(MY_AV)"
+    description: "## 🍂 Juka Changes \n $(changelog) \n ## ⌨️ Juka IDE Changes \n $(MY_XT)"
     auth_token:
       secure: XCqLJKrsMnRCCEEcsPL53Emba/2GrP172INtXx86eu5XBbed614ug/2dcx8MZwmr
     draft: false

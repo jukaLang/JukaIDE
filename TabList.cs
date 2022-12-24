@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace JukaWebAssembly
+﻿namespace JukaWebAssembly
 {
     public class TabList
     {
@@ -19,23 +17,35 @@ namespace JukaWebAssembly
             return tabs;
         }
 
-        public void Add()
+        public void Add(string name = "Untitled.juk",string code="")
         {
-            tabs.Enqueue(new Tab());
+            tabs.Enqueue(new Tab(name,code));
             CurrentTab = tabs.Count()-1;
         }
-
-        public void Delete()
+        
+        public void Delete(int id)
         {
-            tabs.Dequeue();
+            Console.WriteLine(id);
+            tabs = new Queue<Tab>(tabs.Where(x => x.Id != id));
+            if (CurrentTab > 0)
+            {
+                CurrentTab--;
+            } else if(tabs.Count() > 0)
+            {
+                CurrentTab = 0;
+            }
+            else
+            {
+                CurrentTab = -1;
+            }
         }
 
-        public void Delete(int tab)
+        public void SetCurrentTab(int id)
         {
-
+            CurrentTab = tabs.ToList().FindIndex(x => x.Id == id);
         }
 
-        public Tab getCurrentTab()
+        public Tab GetCurrentTab()
         {
             return tabs.ElementAt(CurrentTab);
         }

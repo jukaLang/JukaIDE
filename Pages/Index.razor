@@ -20,7 +20,10 @@ Enter Your Code Below and Click Run: <br/><br/>
 <div class="jide_tab">
 @foreach (var tab in tabs.List())
 {
-    <button class="jide_tab_button"><span class="@((tab.Status == 0? "jide_status_neutral" : "jide_status_edited"))">●</span> <span contenteditable="true">@tab.Name</span> <span>&nbsp;&nbsp;✖</span></button>
+    <button class="jide_tab_button @(tabs.GetCurrentTab() == tab ? "active" : "")" title="@(tab.Id)" onclick="@(() => SelectTab(tab.Id))">
+        <span class="@((tab.Status == 0 ? "jide_status_neutral" : "jide_status_edited"))">●</span> <span contenteditable="true">@tab.Name</span> &nbsp;&nbsp;
+        <span @onclick="@(() => DeleteTab(tab.Id))">✖</span>
+    </button>
 }
     <button class="jide_plusbutton" @onclick="addTab">+</button>
 </div>
@@ -36,7 +39,7 @@ Enter Your Code Below and Click Run: <br/><br/>
 <br/><br/>
 <span class="output">Log: </span><button class="clearlog" @onclick="ClearLog">Clear Log</button><br/>
 <div id="OutputVal">
-    @foreach (var entry in tabs.getCurrentTab().Output.List())
+    @foreach (var entry in tabs.GetCurrentTab().Output.List())
     {
         <div class="entry">
             <span class="eon">[@entry.started.ToString("F")]</span><span class="outside"> [Running Juka...]</span><br/>
@@ -71,6 +74,8 @@ Enter Your Code Below and Click Run: <br/><br/>
     printLine(x);
 }";
         }
+
+        tabs.GetCurrentTab().Code = Data;
 
         return new StandaloneEditorConstructionOptions
         {
@@ -110,13 +115,13 @@ Enter Your Code Below and Click Run: <br/><br/>
         });
 
         await MonacoEditorBase.SetTheme("JukaTheme");
-        tabs.getCurrentTab().Output.Add("Juka Loaded. Click \"Run Code\" to run the code!",starttime);
+        tabs.GetCurrentTab().Output.Add("Juka Loaded. Click \"Run Code\" to run the code!",starttime);
     }
 
     public async Task CopyToClipboard(string mytext)
     {
         DateTime starttime = DateTime.Now;
-        tabs.getCurrentTab().Output.Add("Copied: \"" + mytext + "\" to clipboard!", starttime);
+        tabs.GetCurrentTab().Output.Add("Copied: \"" + mytext + "\" to clipboard!", starttime);
         await JS.InvokeVoidAsync("navigator.clipboard.writeText", mytext);
     }
 
@@ -128,30 +133,53 @@ Enter Your Code Below and Click Run: <br/><br/>
             Data = await model.GetValue(EndOfLinePreference.TextDefined, false);
             UriValue = "?code=" + Uri.EscapeDataString(Data);
             NavManager.NavigateTo($"/{UriValue}");
-            tabs.getCurrentTab().Status = 1;
+            tabs.GetCurrentTab().Status = 1;
+            tabs.GetCurrentTab().Code = Data;
+        }
+    }
+
+    public void SelectTab(int id)
+    {
+        tabs.SetCurrentTab(id);
+        if (_editor != null)
+        {
+            _editor.SetValue(tabs.GetCurrentTab().Code);
         }
     }
 
     public void addTab()
     {
         tabs.Add();
+        if (_editor != null)
+        {
+            _editor.SetValue(tabs.GetCurrentTab().Code);
+        }
+    }
+
+    public void DeleteTab(int id)
+    {
+        tabs.Delete(id);
+        if (_editor != null)
+        {
+            _editor.SetValue(tabs.GetCurrentTab().Code);
+        }
     }
 
     public void ClearLog()
     {
-        tabs.getCurrentTab().Output.Clean();
+        tabs.GetCurrentTab().Output.Clean();
     }
 
     public void LinkToCode()
     {
         DateTime starttime = DateTime.Now;
         string currenturi = NavManager.BaseUri + UriValue;
-        tabs.getCurrentTab().Output.Add(currenturi, starttime);
+        tabs.GetCurrentTab().Output.Add(currenturi, starttime);
     }
 
     public async Task DownloadCode()
     {
-        await JS.InvokeVoidAsync("blazorMonaco.languages.download", Data, tabs.getCurrentTab().Name);
+        await JS.InvokeVoidAsync("blazorMonaco.languages.download", Data, tabs.GetCurrentTab().Name);
     }
 
     public async Task UploadCode(InputFileChangeEventArgs e)
@@ -165,13 +193,16 @@ Enter Your Code Below and Click Run: <br/><br/>
                 {
                     Data = await new StreamReader(file.OpenReadStream(15728640)).ReadToEndAsync();
 
+                    
+                    tabs.Add(file.Name, Data);
+
                     await _editor.SetValue(Data);
                 }
-                tabs.getCurrentTab().Output.Add("Finished Loading File...", starttime);
+                tabs.GetCurrentTab().Output.Add("Finished Loading File...", starttime);
             }
             catch (Exception)
             {
-                tabs.getCurrentTab().Output.Add("File Failed to load. Make sure the file doesn't exceed 15MB or 15728640 bytes", starttime);
+                tabs.GetCurrentTab().Output.Add("File Failed to load. Make sure the file doesn't exceed 15MB or 15728640 bytes", starttime);
             }
         }
     }
@@ -179,7 +210,7 @@ Enter Your Code Below and Click Run: <br/><br/>
     public void RunCode()
     {
         DateTime starttime = DateTime.Now;
-        tabs.getCurrentTab().Output.Add(new Compiler().Go(Data ?? "", false), starttime);
+        tabs.GetCurrentTab().Output.Add(new Compiler().Go(Data ?? "", false), starttime);
     }
 
     public async Task RunAPI()
@@ -188,7 +219,7 @@ Enter Your Code Below and Click Run: <br/><br/>
         var httpout = await Http.GetFromJsonAsync<JsonElement>("https://api.jukalang.com/" + Uri.EscapeDataString(Data));
 
         string outp = httpout.GetProperty("output").GetString() ?? "Failed to Connect to the API";
-        tabs.getCurrentTab().Output.Add(outp, starttime);
+        tabs.GetCurrentTab().Output.Add(outp, starttime);
     }
 
     public async Task ChangeDark()

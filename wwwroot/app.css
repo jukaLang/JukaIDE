@@ -686,7 +686,7 @@ html[data-theme='dark'] .jide_tab {
     border-left: none;
     border-right: none;
     border-top: 4px solid rgb(25,225,198);
-    background-color: rgb(48, 56, 70);
+    background-color: #8fafb9;
     color: white;
     float: left;
     outline: none;
@@ -694,13 +694,16 @@ html[data-theme='dark'] .jide_tab {
     padding: 14px 16px;
     transition: 0.3s;
     font-size: 17px;
-    margin-right: 3px;
     animation: none;
     margin: 0;
+    margin-right: 3px;
     border-radius: 0;
     box-shadow: none;
 }
 
+html[data-theme='dark'] .jide_tab .jide_tab_button {
+    animation: none;
+}
 /* Change background color of buttons on hover */
 .jide_tab .jide_tab_button:hover {
     background-color: #ef7171;
@@ -708,7 +711,7 @@ html[data-theme='dark'] .jide_tab {
 
 /* Create an active/current tablink class */
 .jide_tab .jide_tab_button.active {
-    background-color: #ef7171;
+    background-color: rgb(48, 56, 70);
 }
 
 .jide_tab .jide_plusbutton {
@@ -730,4 +733,4 @@ html[data-theme='dark'] .jide_tab {
 
 .jide_status_edited {
     color: yellow;
-}
+}0 
