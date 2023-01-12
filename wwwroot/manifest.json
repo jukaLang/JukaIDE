@@ -1,6 +1,6 @@
 {
   "name": "Juka App",
-  "short_name": "Juka WASM",
+  "short_name": "Juka IDE",
   "theme_color": "rgb(51, 52, 71)",
   "background_color": "#FFF",
   "display": "standalone",
