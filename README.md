@@ -1,39 +1,33 @@
-# Juka - Programming Language (IDE)
+# 🚀 Juka - Programming Language (IDE) 🚀
 
-Build Status: [![Build status](https://ci.appveyor.com/api/projects/status/he4h1mtnoeakl7t0?svg=true)](https://ci.appveyor.com/project/TheAndreiM/jukaide)
+![Build Status](https://ci.appveyor.com/api/projects/status/he4h1mtnoeakl7t0?svg=true)
 
-Run online via: https://ide.jukalang.com
+Welcome to Juka! It's a unique programming language with an integrated development environment (IDE) that you can run online or offline. 
 
-If you want to run Juka offline:
- - Mobile: Just go to the site above (https://ide.jukalang.com) and add it to your homescreen
- - Desktop/Chromium Browser: Go to the site above and click Install App in the top right corner of the browser's URL (area where you enter a link)
+## 💻 Online and Offline Usage 📱
 
-Visit https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen for more details on adding the site.
+You can run Juka online at [https://ide.jukalang.com](https://ide.jukalang.com).
 
-Official Juka Website: https://jukalang.com
+For offline usage:
+- **Mobile**: Visit the site above and add it to your homescreen.
+- **Desktop/Chromium Browser**: Visit the site and click 'Install App' in the top right corner of the browser's URL bar.
 
+For more details on adding the site to your home screen, visit [Mozilla's guide on Progressive Web Apps](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Add_to_home_screen).
+
+## 📖 About Juka 📖
+
+Juka is a powerful programming language designed for simplicity and efficiency. This repository hosts the IDE (Offline Web App) version of the Juka Programming Language. The IDE is designed to provide a seamless coding experience for Juka programmers. It utilizes the JukaCompiler found at [https://github.com/jukaLang/juka](https://github.com/jukaLang/juka).
 
 ![jukaIDE](https://user-images.githubusercontent.com/11934545/209417264-e0f168b6-7ab8-4e06-bc3a-439c15056fc5.png)
 
-## Introduction
+## 🏃‍♀️ Running Juka IDE 🏃‍♂️
 
-This repo is for IDE (Offline Web App) version of Juka Programming Language.
-It utilizes JukaCompiler found at https://github.com/jukaLang/juka
+To run Juka IDE, open `index.html` on a static server. The IDE runs entirely on the client-side, providing a fast and responsive user experience. Please note that due to the constraints of the client-side web browser, many system calls may not run. However, the IDE is fully equipped to compile and run Juka code, providing real-time feedback and error messages.
 
+## ❓ Questions or Issues? ❓
 
-## Running Juka IDE
+If you have any questions or issues, feel free to:
+- Join our [Discord](https://discord.com/invite/MsKWsErzfp) 🎧
+- Open up an issue on GitHub 🐞
 
-Open index.html on a static server. 
-
-Juka IDE (Web App) runs on the client-side (not on a server).
-
-Please note that due to constraints of the client-side web browser, many system calls mayl not run.
-
-
-# Got a question?
-
-Please join discord: https://discord.com/invite/MsKWsErzfp
-
-or 
-
-Open up an issue on GitHub
+For more information, visit the official Juka website at [https://jukalang.com](https://jukalang.com).

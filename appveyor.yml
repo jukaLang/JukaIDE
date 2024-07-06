@@ -46,7 +46,7 @@ build_script:
 configuration: Release
 
 artifacts:
-- path: 'bin\Release\net6.0\publish\wwwroot'
+- path: 'bin\Release\net8.0\publish\wwwroot'
   name: Juka_IDE_$(APPVEYOR_BUILD_VERSION)
   type: zip
 
@@ -58,7 +58,7 @@ deploy:
     release: "📦 Juka IDE v$(MY_AV)"
     description: "## 🍂 Juka Changes \n $(changelog) \n ## ⌨️ Juka IDE Changes \n $(MY_XT)"
     auth_token:
-      secure: XCqLJKrsMnRCCEEcsPL53Emba/2GrP172INtXx86eu5XBbed614ug/2dcx8MZwmr
+      secure: v/vwWedaFbZZt7xBtarpKXtoaub9EY/zbvwdUz9Yccsc0rykWiDaV1zYuMjDb8kn
     draft: false
     prerelease: false
     on:
