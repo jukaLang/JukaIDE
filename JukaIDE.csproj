@@ -10,18 +10,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\MonacoEditor.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="appveyor.yml" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorMonaco" Version="2.1.0" />
-    <PackageReference Include="JukaCompiler" Version="0.0.307" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.2" PrivateAssets="all" />
+    <PackageReference Include="BlazorMonaco" Version="3.2.0" />
+    <PackageReference Include="JukaCompiler" Version="0.0.354" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.6" PrivateAssets="all" />
   </ItemGroup>
 
 <ItemGroup>
 	<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+</ItemGroup>
+
+<ItemGroup>
+  <UpToDateCheckInput Remove="Pages\MonacoEditor.razor" />
+</ItemGroup>
+
+<ItemGroup>
+  <_ContentIncludedByDefault Remove="Pages\MonacoEditor.razor" />
+</ItemGroup>
+
+<ItemGroup>
+  <None Include="Pages\MonacoEditor.razor" />
 </ItemGroup>
     
 </Project>
